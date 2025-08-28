@@ -52,7 +52,8 @@ namespace HierarchyActiveToggle
             {
                 Undo.RecordObject(gameObject, (gameObject.activeSelf ? "Deactivate " : "Activate ") + gameObject.name);
                 gameObject.SetActive(!gameObject.activeSelf);
-                EditorSceneManager.MarkSceneDirty(gameObject.scene);
+                if (!Application.isPlaying)
+                    EditorSceneManager.MarkSceneDirty(gameObject.scene);
             }
 
             GUI.color = oldColor;
